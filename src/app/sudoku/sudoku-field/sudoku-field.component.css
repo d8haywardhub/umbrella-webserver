@@ -1,0 +1,10 @@
+.field {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    color: #888;
+  }
+  .field[readonly] {
+    color: #222;
+  }

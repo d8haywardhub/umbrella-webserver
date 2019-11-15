@@ -1,0 +1,28 @@
+{
+  "customers": [
+    {
+      "name": "John Doe",
+      "personOfContact": "contact name",
+      "phone": "910928392098",
+      "address": "123 Sun Street",
+      "membership": "Platinum",
+      "_id": 1
+    },
+    {
+      "name": "Mary Johnson",
+      "personOfContact": "contact name",
+      "phone": "808937482734",
+      "location": "893 Main Voulevard",
+      "numberOfEmployees": "Pro",
+      "_id": 2
+    },
+    {
+      "name": "john cale",
+      "personOfContact": "contact name",
+      "phone": "12345678",
+      "location": "1 calif",
+      "numberOfEmployees": "Pro",
+      "_id": 3
+    }
+  ]
+}

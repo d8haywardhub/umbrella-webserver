@@ -1,0 +1,9 @@
+<!-- React
+<input
+class="field"
+value={{field.value || ""}}
+readOnly={{field.readonly}}
+onChange={this.handleChange}
+/>
+-->
+<input matInput type="text" class="field" [readonly]="isReadOnly()" maxlength="1" placeholder="" name="value" [ngModel]="sudokuCol.value" (change)="onChange($event)"/>
