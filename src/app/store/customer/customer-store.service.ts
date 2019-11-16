@@ -139,7 +139,7 @@ export class CustomerStoreService {
 
   // Get all Customers from DB
   async fetchAll() {
-    this.customers = await this.customerService.index().toPromise();
+    this.customers = await this.customerService.getAll().toPromise();
   }
 
 }

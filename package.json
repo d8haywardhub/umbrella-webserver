@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start-configjs": "concurrently \"ng serve --proxy-config proxy.conf.js\" \"json-server --watch data/data.json\" ",
-    "start": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"json-server --watch data/data.json\" ",
-    "startorig": "ng serve --proxy-config proxy.conf.js",
+    "start-consec-configjs": "concurrently \"ng serve --proxy-config proxy.conf.js\" \"json-server --watch data/data.json\" ",
+    "start-consec-configjson": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"json-server --watch data/data.json\" ",
+    "start": "ng serve --proxy-config proxy.conf.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
