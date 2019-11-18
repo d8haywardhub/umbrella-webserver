@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CustomerReport } from '../../models';
-import { tap } from 'rxjs/operators';
+//import { tap } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class ReportService {
@@ -20,4 +20,7 @@ export class ReportService {
     return this.http.get<CustomerReport[]>("/report/raining");
   }
 
+  getTop4() {
+    return this.http.get<CustomerReport[]>("/report/top4");
+  }
 }

@@ -4,21 +4,19 @@ import { Observable } from 'rxjs';
 
 import { CustomerReport } from '../../models';
 
-
 @Component({
-  selector: 'app-raining',
-  templateUrl: './raining.component.html',
-  styleUrls: ['./raining.component.css']
+  selector: 'app-top4',
+  templateUrl: './top4.component.html',
+  styleUrls: ['./top4.component.css']
 })
-export class RainingComponent implements OnInit {
-  reports: Observable<CustomerReport[]>;  //any;
+export class Top4Component implements OnInit {
+  report: Observable<CustomerReport[]>;  //any;
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reports = this.reportService.getRaining();
-    console.log(this.reports);
+    this.report = this.reportService.getTop4();
+    console.log(this.report);
   }
-
 
 }

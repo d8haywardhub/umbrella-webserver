@@ -11,14 +11,14 @@ const appRoutes: Routes = [
     loadChildren: "../app/customers/customers.module#CustomersModule"
     //data: { preload: true},
   },
-  {
+  /*{
     path: "report",
     loadChildren: "../app/reports/reports.module#ReportsModule"
     //data: { preload: true},
-  },
+  },*/
   {
-    path: "sudoku",
-    loadChildren: "../app/sudoku/sudoku.module#SudokuModule"
+    path: "reports",
+    loadChildren: "../app/reports/reports.module#ReportsModule"
     //data: { preload: true},
   },
   { path: '**', component: HomeComponent }

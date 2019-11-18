@@ -1,0 +1,23 @@
+<h3>Top 4</h3>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Name</th>
+      <th scope="col">Number Of Employees</th>
+      <th scope="col">Wet</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="4" class="alert alert-danger" *ngIf="error$ | async as error">{{error}}</td>
+    </tr>
+    <tr>
+
+    <tr *ngFor="let reportItem of (report |async)">
+      <th scope="row">{{reportItem.name}}</th>
+      <td>{{reportItem.numberOfEmployees}}</td>
+      <td>{{reportItem.isWet}}</td>
+    </tr>
+  </tbody>
+</table>
