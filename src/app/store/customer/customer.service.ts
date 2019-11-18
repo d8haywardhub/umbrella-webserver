@@ -18,11 +18,11 @@ export class CustomerService {
   }  
 
   getAll() {
-    return this.http.get<Customer[]>("/customer/customers");
+    return this.http.get<Customer[]>("/customers");
   }
 
   create(customer: Customer) {
-    return this.http.post<Customer>("/customer/customer", JSON.stringify(customer), this.httpOptions);
+    return this.http.post<Customer>("/customers", JSON.stringify(customer), this.httpOptions);
 
     /* For debugging. TBD: remove this......
     return this.http
@@ -42,8 +42,8 @@ export class CustomerService {
 
   }
 
-  update(customer: Customer) {
-    return this.http.put<Customer>(`/customers/${customer._id}`, JSON.stringify(customer), this.httpOptions);
+  update(customer: Customer, id: number) {
+    return this.http.patch<Customer>(`/customers/${id}`, JSON.stringify(customer), this.httpOptions);
   }
 
   remove(id: number) {

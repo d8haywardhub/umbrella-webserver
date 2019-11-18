@@ -7,8 +7,13 @@ import { HomeComponent } from "./home/home.component";
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   {
-    path: "customers",
+    path: "customer",
     loadChildren: "../app/customers/customers.module#CustomersModule"
+    //data: { preload: true},
+  },
+  {
+    path: "report",
+    loadChildren: "../app/reports/reports.module#ReportsModule"
     //data: { preload: true},
   },
   {

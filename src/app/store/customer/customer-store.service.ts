@@ -80,10 +80,10 @@ export class CustomerStoreService {
 
   }
 
-  async updateCustomer(customer: Customer) {
+  async updateCustomer(customer: Customer, id: number) {
 
     // Optimistic update ensuring an immutable state (copy = source.concat())
-    let index = this.customers.findIndex(c => c._id === customer._id);
+    let index = this.customers.findIndex(c => c._id === id);    //customer._id);
 
     /* not working ....
     this.customers = this.customers.concat(
@@ -102,7 +102,7 @@ export class CustomerStoreService {
     // Update Customer in DB
     try {
       await this.customerService
-        .update(customer)
+        .update(customer, id)
         .toPromise();
 
       this.customers = [...this.customers];

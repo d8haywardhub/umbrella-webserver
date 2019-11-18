@@ -14,6 +14,7 @@ import { CustomerStoreService } from 'src/app/store/customer/customer-store.serv
 export class CustomerEditComponent implements OnInit {
   customerForm: FormGroup;
   customer$: Observable<Customer>;
+  customer_id:number = null;
 
   constructor(
     private fb: FormBuilder,
@@ -28,19 +29,20 @@ export class CustomerEditComponent implements OnInit {
       personOfContact: ["", Validators.required],
       phone: ["", Validators.required],
       location: ["", Validators.required],
-      numberOfEmployees: ["", Validators.required]
-      //id: null
+      numberOfEmployees: ["", Validators.required],
+      _id: ["", Validators.required]
     })
 
     this.customer$.subscribe(currentCustomer => {
       if (currentCustomer) {
+        this.customer_id = currentCustomer._id;
         this.customerForm.patchValue({
           name: currentCustomer.name,
           personOfContact: currentCustomer.personOfContact,
           phone: currentCustomer.phone,
           location: currentCustomer.location,
           numberOfEmployees: currentCustomer.numberOfEmployees,
-          //id: currentCustomer.id
+          _id: currentCustomer._id
         });
       }
     })
@@ -48,7 +50,7 @@ export class CustomerEditComponent implements OnInit {
 
   updateCustomer() {
     const updatedCustomer: Customer = {
-      //id: this.customerForm.get("id").value
+      _id: this.customerForm.get("_id").value,
       name: this.customerForm.get("name").value,
       personOfContact: this.customerForm.get("personOfContact").value,
       phone: this.customerForm.get("phone").value,
@@ -57,7 +59,17 @@ export class CustomerEditComponent implements OnInit {
     };
 
     // Dispatch
-    this.customerStore.updateCustomer(updatedCustomer);
+    this.customerStore.updateCustomer(updatedCustomer, this.customer_id);
+
+    this.customerForm.patchValue({
+      name: "",
+      personOfContact: "",
+      phone: "",
+      location: "",
+      numberOfEmployees: "",
+      _id: ""
+    });
+
   }
 
 }

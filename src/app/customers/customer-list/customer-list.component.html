@@ -15,7 +15,6 @@
       <td colspan="5" class="alert alert-danger" *ngIf="error$ | async as error">{{error}}</td>
     </tr>
     <tr>
-    <!--<tr *ngFor="let customer of (customers$ |async)">-->
     <!--<tr *ngFor="let customer of (customerStore.customers$ |async)">-->
     <tr *ngFor="let customer of (customers$ |async)">
       <th scope="row">{{customer.name}}</th>
@@ -24,11 +23,9 @@
       <td>{{customer.location}}</td>
       <td>{{customer.numberOfEmployees}}</td>
       <th>
-        <a (click)=editCustomer(customer)>edit</a>
+        <a (click)=selectCustomer(customer)>select</a>
         <br>
         <a (click)=deleteCustomer(customer)>delete</a>
-        <br>
-        <a (click)=selectCustomer(customer)>select</a>
       </th>
     </tr>
   </tbody>
