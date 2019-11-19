@@ -14,7 +14,6 @@ import { CustomerStoreService } from 'src/app/store/customer/customer-store.serv
 export class CustomerEditComponent implements OnInit {
   customerForm: FormGroup;
   customer$: Observable<Customer>;
-  customer_id:number = null;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +34,6 @@ export class CustomerEditComponent implements OnInit {
 
     this.customer$.subscribe(currentCustomer => {
       if (currentCustomer) {
-        this.customer_id = currentCustomer._id;
         this.customerForm.patchValue({
           name: currentCustomer.name,
           personOfContact: currentCustomer.personOfContact,
@@ -49,26 +47,35 @@ export class CustomerEditComponent implements OnInit {
   }
 
   updateCustomer() {
-    const updatedCustomer: Customer = {
-      _id: this.customerForm.get("_id").value,
-      name: this.customerForm.get("name").value,
-      personOfContact: this.customerForm.get("personOfContact").value,
-      phone: this.customerForm.get("phone").value,
-      location: this.customerForm.get("location").value,
-      numberOfEmployees: this.customerForm.get("numberOfEmployees").value
-    };
 
-    // Dispatch
-    this.customerStore.updateCustomer(updatedCustomer, this.customer_id);
+    if (this.customerStore.customer !== null) {
+      const updatedCustomer: Customer = {
+        _id: this.customerForm.get("_id").value,
+        name: this.customerForm.get("name").value,
+        personOfContact: this.customerForm.get("personOfContact").value,
+        phone: this.customerForm.get("phone").value,
+        location: this.customerForm.get("location").value,
+        numberOfEmployees: this.customerForm.get("numberOfEmployees").value
+      };
+  
+      // Dispatch
+      const currentCustomerState = this.customerStore.customer;
+      const updatedState = { ...currentCustomerState, ...updatedCustomer };
+      this.customerStore.updateCustomer(updatedState);
+  
+      // clear selected customer and form
+      this.customerStore.customer = null;
+        
+      this.customerForm.patchValue({
+        name: "",
+        personOfContact: "",
+        phone: "",
+        location: "",
+        numberOfEmployees: "",
+        _id: ""
+      });
 
-    this.customerForm.patchValue({
-      name: "",
-      personOfContact: "",
-      phone: "",
-      location: "",
-      numberOfEmployees: "",
-      _id: ""
-    });
+    }
 
   }
 

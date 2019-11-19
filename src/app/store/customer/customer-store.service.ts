@@ -80,37 +80,34 @@ export class CustomerStoreService {
 
   }
 
-  async updateCustomer(customer: Customer, id: number) {
+  async updateCustomer(customer: Customer) {    //, id: number) {
 
     // Optimistic update ensuring an immutable state (copy = source.concat())
-    let index = this.customers.findIndex(c => c._id === id);    //customer._id);
+    let index = this.customers.findIndex(c => c._id === customer._id);    //customer._id);
 
-    /* not working ....
-    this.customers = this.customers.concat(
-      ...this.customers.slice(0, index),
-      customer,
-      ...this.customers.slice(index + 1)
-    );
-    */
-    
-    this.customers = [
-      ...this.customers.slice(0, index),
-      customer,
-      ...this.customers.slice(index + 1)
-    ];
-    
-    // Update Customer in DB
-    try {
-      await this.customerService
-        .update(customer, id)
-        .toPromise();
-
-      this.customers = [...this.customers];
-    } catch (e) {
-      // if server sends back an error, revert the changes
-      console.error(e);
-      // TODO: revert changes !!!!
+    if (index > -1) {
+     
+      this.customers = [
+        ...this.customers.slice(0, index),
+        customer,
+        ...this.customers.slice(index + 1)
+      ];
+      
+      // Update Customer in DB
+      try {
+        await this.customerService
+          //.update(customer, id)
+          .update(customer, customer._id)
+          .toPromise();
+  
+        this.customers = [...this.customers];
+      } catch (e) {
+        // if server sends back an error, revert the changes
+        console.error(e);
+        // TODO: revert changes !!!!
+      }
     }
+
   }
 
 
