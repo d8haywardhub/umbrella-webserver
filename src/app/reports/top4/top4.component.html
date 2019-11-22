@@ -9,10 +9,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <!--<tr>
       <td colspan="4" class="alert alert-danger" *ngIf="error$ | async as error">{{error}}</td>
     </tr>
-    <tr>
+    <tr>-->
 
     <tr *ngFor="let reportItem of (report |async)">
       <th scope="row">{{reportItem.name}}</th>
