@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { tap } from 'rxjs/operators';
 import { Customer } from '../../models';
-import { tap } from 'rxjs/operators';
+import { API_BASE_URL } from '../../app.tokens';
 
 @Injectable({providedIn: 'root'})
 export class CustomerService {
-  //private readonly apiBaseUrl = "/customers";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject(API_BASE_URL) private readonly baseUrl: string) { }
 
   // Http Options
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -18,11 +17,14 @@ export class CustomerService {
   }  
 
   getAll() {
-    return this.http.get<Customer[]>("/customers");
+    //return this.http.get<Customer[]>("/customers");
+    //return this.http.get<Customer[]>("http://localhost:3001/customers");
+    return this.http.get<Customer[]>(`${this.baseUrl}/customers`);
   }
 
   create(customer: Customer) {
-    return this.http.post<Customer>("/customers", JSON.stringify(customer), this.httpOptions);
+    //return this.http.post<Customer>("/customers", JSON.stringify(customer), this.httpOptions);
+    return this.http.post<Customer>(`${this.baseUrl}/customers`, JSON.stringify(customer), this.httpOptions);
 
     /* For debugging. TBD: remove this......
     return this.http
@@ -43,11 +45,11 @@ export class CustomerService {
   }
 
   update(customer: Customer, id: number) {
-    return this.http.patch<Customer>(`/customers/${id}`, JSON.stringify(customer), this.httpOptions);
+    return this.http.patch<Customer>(`${this.baseUrl}/customers/${id}`, JSON.stringify(customer), this.httpOptions);
   }
 
   remove(id: number) {
-    return this.http.delete(`/customers/${id}`);
+    return this.http.delete(`${this.baseUrl}/customers/${id}`);
   }
 
 }

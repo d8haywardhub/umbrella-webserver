@@ -13,7 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 
 import { environment } from '../environments/environment';
-import { API_BASE_URL, WS_URL } from './app.tokens';
+import { API_BASE_URL } from './app.tokens';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { API_BASE_URL, WS_URL } from './app.tokens';
   providers: [
       // Interceptors
       // Resolvers
-      // Environment stuff
+      // Environment related configurations
       { provide: API_BASE_URL, useValue: environment.apiBaseUrl }
     ],
   bootstrap: [AppComponent]
